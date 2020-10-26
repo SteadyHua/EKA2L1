@@ -38,8 +38,11 @@ jobs:
       id: git_short_sha
       run: echo "::set-output name=value::$(git rev-parse --short HEAD)"
 
+    - name: Rename APK
+      run: mv ${{ steps.sign-android-app.outputs.signedReleaseFile }} eka2l1-${{ steps.git_short_sha.outputs.value }}.apk
+
     - name: Upload APK
       uses: actions/upload-artifact@v1
       with:
-        name: eka2l1-${{ steps.git_short_sha.outputs.value }}.apk
-        path: ${{ steps.sign-android-app.outputs.signedReleaseFile }}
+        name: eka2l1-${{ steps.git_short_sha.outputs.value }}
+        path: eka2l1-${{ steps.git_short_sha.outputs.value }}.apk
