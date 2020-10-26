@@ -41,5 +41,5 @@ jobs:
     - name: Upload APK
       uses: actions/upload-artifact@v1
       with:
-        name: eka2l1-${{ steps.git_short_sha.outputs.value }}
+        name: eka2l1-${{ steps.git_short_sha.outputs.value }}.apk
         path: ${{ steps.sign-android-app.outputs.signedReleaseFile }}
