@@ -25,6 +25,7 @@ jobs:
       run: ./gradlew assembleRelease
 
     - name: Sign APK
+      id: sign-android-app
       uses: jobobby04/sign-android-release@v1.0.3
       with:
         releaseDirectory: ./src/emu/android/app/build/outputs/apk/release
@@ -41,4 +42,4 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: eka2l1-${{ steps.git_short_sha.outputs.value }}
-        path: $SIGNED_RELEASE_FILE
+        path: ${{ steps.sign-android-app.outputs.signedReleaseFile }}
