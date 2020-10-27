@@ -39,7 +39,9 @@ jobs:
       run: echo "::set-output name=value::$(git rev-parse --short HEAD)"
 
     - name: Rename APK
-      run: mv ${{ steps.sign-android-app.outputs.signedReleaseFile }} eka2l1-${{ steps.git_short_sha.outputs.value }}.apk
+      run: |
+        mv ${{ steps.sign-android-app.outputs.signedReleaseFile }} eka2l1-${{ steps.git_short_sha.outputs.value }}.apk
+        cp eka2l1-${{ steps.git_short_sha.outputs.value }}.apk android-latest.apk
       working-directory: ${{ github.workspace }}
 
     - name: Upload APK
@@ -57,6 +59,6 @@ jobs:
         release_name: "Automatic Android CI builds"
         body_mrkdwn: |
           _This is the newest build, but Github date can't be updated. Corresponding commit: ${{ github.sha }}_
-        assets: eka2l1-${{ steps.git_short_sha.outputs.value }}.apk
+        assets: android-latest.apk
         replace_assets: true
         github_token: ${{ secrets.GITHUB_TOKEN }}
