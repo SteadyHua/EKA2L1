@@ -61,7 +61,7 @@ namespace eka2l1 {
         if (!prop) {
             LOG_INFO("System Agent can't find state with UID 0x{:X}", uid.value());
 
-            ctx->complete(epoc::error_not_found);
+            ctx->complete(epoc::error_none);
             return;
         }
 
