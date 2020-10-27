@@ -47,3 +47,16 @@ jobs:
       with:
         name: eka2l1-${{ steps.git_short_sha.outputs.value }}
         path: eka2l1-${{ steps.git_short_sha.outputs.value }}.apk
+
+    - name: Update the CI tag
+      uses: Xotl/cool-github-releases@v1
+      with:
+        mode: update
+        isPrerelease: false
+        tag_name: continous-android
+        release_name: "Automatic Android CI builds"
+        body_mrkdwn: |
+          _This is the newest build, but Github date can't be updated. Corresponding commit: ${{ github.sha }}_
+        assets: eka2l1-${{ steps.git_short_sha.outputs.value }}.apk
+        replace_assets: true
+        github_token: ${{ secrets.GITHUB_TOKEN }}
