@@ -716,6 +716,7 @@ nfdresult_t NFD_PickFolder(const nfdchar_t *defaultPath,
         result = fileDialog->GetResult(&shellItem);
         if ( !SUCCEEDED(result) )
         {
+            printf("Stupid stupid stupid %d", result);
             NFDi_SetError("Could not get file path for selected.");
             shellItem->Release();
             goto end;
