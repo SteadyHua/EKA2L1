@@ -726,6 +726,7 @@ nfdresult_t NFD_PickFolder(const nfdchar_t *defaultPath,
         result = shellItem->GetDisplayName(SIGDN_DESKTOPABSOLUTEPARSING, &path);
         if ( !SUCCEEDED(result) )
         {
+            printf("Stupid stupid stupid 2 %d", result);
             NFDi_SetError("GetDisplayName for IShellItem failed.");            
             shellItem->Release();
             goto end;
